@@ -1,0 +1,30 @@
+/**
+ * ${goalDescription}
+ *
+ * @goal touch
+ * @requiresDependencyResolution=test
+ * @since 1.2
+ */
+
+import org.apache.maven.plugin.Mojo;
+import org.apache.maven.script.beanshell.BeanshellMojoAdapter;
+import org.codehaus.plexus.util.FileUtils;
+
+execute()
+{
+    logger.info( "Executing File to be touched beanshell mojo..." );
+    FileUtils.fileWrite( file, "This is a File to be touched Beanshell test" );
+}
+
+/**
+ *
+ *
+ * @parameter expression="file"
+ * @required
+ */
+setfile( file )
+{
+    file = file;
+}
+
+return new BeanshellMojoAdapter( (Mojo) this, this.interpreter );
